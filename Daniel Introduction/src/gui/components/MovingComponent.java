@@ -17,7 +17,31 @@ public class MovingComponent extends Components implements Runnable {
 
 	public MovingComponent(int x, int y, int w, int h) {
 		super(x, y, w, h);
-		// TODO Auto-generated constructor stub
+		vx =0;
+		vy = 0;
+	
+	}
+	
+	public boolean IsAnimanted(){
+		return true;
+		
+	}
+	
+
+	public double getVx() {
+		return vx;
+	}
+
+	public void setVx(double vx) {
+		this.vx = vx;
+	}
+
+	public double getVy() {
+		return vy;
+	}
+
+	public void setVy(double vy) {
+		this.vy = vy;
 	}
 
 	@Override
