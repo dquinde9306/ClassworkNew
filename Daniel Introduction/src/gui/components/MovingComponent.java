@@ -14,7 +14,6 @@ public class MovingComponent extends Components implements Runnable {
 	
 	
 	
-	
 
 	public MovingComponent(int x, int y, int w, int h) {
 		super(x, y, w, h);
