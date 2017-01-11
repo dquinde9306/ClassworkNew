@@ -10,6 +10,7 @@ import gui.Screen;
 import gui.components.Action;
 import gui.components.Button;
 import gui.components.Graphic;
+import gui.components.MovingComponent;
 import gui.components.TextArea;
 import gui.components.TextLable;
 import gui.components.Visible;
@@ -39,8 +40,11 @@ public class CoordinateScreen extends Screen implements MouseMotionListener,Mous
 		viewObjects.add(area);
 		image = new Graphic(30,300,0.5,"resources/sampleImages/hip.png");
 		viewObjects.add(image);
-
-
+		MovingComponent c = new MovingComponent(20, 20, 100, 100);
+		viewObjects.add(c);
+		c.setVy(2);
+		c.setVy(1);
+		c.play();
 	}
 
 	@Override

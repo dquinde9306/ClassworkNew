@@ -1,5 +1,6 @@
 package gui.components;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class MovingComponent extends Components implements Runnable {
@@ -22,6 +23,14 @@ public class MovingComponent extends Components implements Runnable {
 	
 	}
 	
+	public void play(){
+		if(!running){
+			Thread go = new Thread(this);
+			go.start();
+			}
+	}
+	
+	
 	public boolean IsAnimanted(){
 		return true;
 		
@@ -29,7 +38,7 @@ public class MovingComponent extends Components implements Runnable {
 	
 	public void setX(int x) {
 		super.setX(x);
-		posx = x; // now the actual position is synched with the pixelS 
+		posx = x; // now the actual position is synched with the pixels 
 	}
 
 	public boolean isRunning() {
@@ -71,11 +80,19 @@ public class MovingComponent extends Components implements Runnable {
 		while(running){
 			try {
 				Thread.sleep(REFRESH_RATE);
-				// I will add code here last
+				checkBehaviours();
 				update();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+		}
+		
+	}
+
+	private void checkBehaviours() {
+		if(getY()>300){
+			setY(300);
+			vy=-vy;
 		}
 		
 	}
@@ -85,10 +102,29 @@ public class MovingComponent extends Components implements Runnable {
 		
 		long currentTime = System.currentTimeMillis();
 		int difference = (int)(currentTime - moveTime);
-		
-		
-		
+		if(difference >= REFRESH_RATE ){
+			//update moveTime since a move is happening
+			moveTime = currentTime;
+			//calculate new position
+			posx += vx * (double)difference/REFRESH_RATE;
+			posy += vy * (double)difference/REFRESH_RATE;
+			// for very low velocities, rounding down to an int might
+			//make it look like nothing changed
+			
+			super.setX((int)posx); 
+			super.setY((int)posy); 
 
+			
+		}
+		
+		drawImage(g);
+
+	}
+
+	private void drawImage(Graphics2D g) {
+		g.setColor(Color.black);
+		g.fillOval(0, 0, getWidth(), getHeight());
+		
 	}
 
 	
