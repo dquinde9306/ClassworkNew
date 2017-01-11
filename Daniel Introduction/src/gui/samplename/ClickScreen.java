@@ -3,6 +3,7 @@ package gui.samplename;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import gui.Screen;
 import gui.components.Action;
@@ -12,70 +13,55 @@ import gui.components.TextArea;
 import gui.components.TextLable;
 import gui.components.Visible;
 
-public class ClickScreen extends Screen  implements MouseListener  {
-	private TextArea area;
-	private ClickableGraphics image;
+public class ClickScreen extends Screen implements MouseListener{
 
 	public ClickScreen(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
 	}
 
-	public void initObject(ArrayList<Visible> viewObjects) {
-		area = new TextArea(20, 200, 500, 100, "because a vision softly creeping, Left its seed while I was sleeping");
-		viewObjects.add(area);
-		image = new ClickableGraphics(30,300,"resources/sampleImages/hip.png",new Action(){
-			public void act(){
-				image.setX(image.getX() +1);
-				//MouseFollower.game.setScreen(MouseFollower.myScreen);
-			}
-		});
-		viewObjects.add(image);	
+	private ClickableGraphics mario;
 
-
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if(image.isHovered(e.getX(), e.getY())){
-			image.act();
+	public void mouseClicked(MouseEvent m) {
+		if(mario.isHovered(m.getX(), m.getY())){
+			mario.act();
 		}
-		
 	}
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
+	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void mouseExited(MouseEvent e) {
+	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void mousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void mouseReleased(MouseEvent e) {
+	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 	
 	public MouseListener getMouseListener(){
 		return this;
-
 	}
 
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects) {
-		// TODO Auto-generated method stub
-		
+		mario = new ClickableGraphics(100, 100, 1, "resources/sampleImages/hip.png");
+		mario.setAction(new Action() {
+			
+			public void act() {
+				mario.setX(mario.getX() + 10);
+			}
+		});
+		viewObjects.add(mario);
 	}
 
 }

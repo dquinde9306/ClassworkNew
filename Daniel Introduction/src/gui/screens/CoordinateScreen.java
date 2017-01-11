@@ -33,12 +33,13 @@ implements MouseMotionListener{
 
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects) {
-		button = new Button(20,100,80,40,
+		button = new Button(100,50,100,50,
 				"The Button with a long name",new Color(100,100,250),
 				new Action() {
 
 			public void act() {
-				// TODO Auto-generated method stub
+				MouseFollower.game.setScreen(MouseFollower.myScreen);
+				update();
 
 			}
 		});
@@ -55,7 +56,7 @@ implements MouseMotionListener{
 						+ " is called TextArea.");
 		viewObjects.add(area);
 
-		bowser = new Graphic(30,30,.5, "resources/"
+		bowser = new Graphic(300,100,.5, "resources/"
 				+ "sampleImages/hip.png"); 
 		viewObjects.add(bowser);
 		MovingComponent c = new MovingComponent(20, 20, 100, 100);
@@ -79,7 +80,12 @@ implements MouseMotionListener{
 	public MouseMotionListener getMouseMotionListener(){ 
 		return this;
 	}
-
+	
+	public void mouseClicked(MouseEvent m) {
+		if(button.isHovered(m.getX(), m.getY())){
+			button.act();
+		}
+	}
 
 
 
