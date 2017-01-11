@@ -27,6 +27,24 @@ public class MovingComponent extends Components implements Runnable {
 		
 	}
 	
+	public void setX(int x) {
+		super.setX(x);
+		posx = x; // now the actual position is synched with the pixelS 
+	}
+
+	public boolean isRunning() {
+		return running;
+	}
+
+	public void setRunning(boolean running) {
+		this.running = running;
+	}
+
+	public void setY(int y) {
+		super.setY(y);
+		posy = y;
+	}
+	
 
 	public double getVx() {
 		return vx;
@@ -46,14 +64,46 @@ public class MovingComponent extends Components implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-
+		posx = getX();
+		posy = getY();
+		running = true;
+		moveTime = System.currentTimeMillis();
+		while(running){
+			try {
+				Thread.sleep(REFRESH_RATE);
+				// I will add code here last
+				update();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	@Override
 	public void update(Graphics2D g) {
-		// TODO Auto-generated method stub
+		
+		long currentTime = System.currentTimeMillis();
+		int difference = (int)(currentTime - moveTime);
+		
+		
+		
 
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
