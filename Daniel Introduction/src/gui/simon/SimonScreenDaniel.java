@@ -73,7 +73,7 @@ public class SimonScreenDaniel extends ClickableScreen implements Runnable{
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		addButtons();
+		addButtons(viewObjects);
 		progress = getProgress();
 		label = new TextLable(130,230,300,40,"Let's play Simon!");
 		sequence = new ArrayList<MoveInterfaceDaniel>();
@@ -111,15 +111,14 @@ public class SimonScreenDaniel extends ClickableScreen implements Runnable{
 
 
 
-	public void addButtons() {
+	public void addButtons(List<Visible> viewObjects) {
 		int buttonCount = 3;
 		Color[] colors = {Color.red, Color.blue,Color.green};
 		for(int i = 0; i < buttonCount; i++ ){
-			buttons[i] = getAButton();
-			buttons[i].setColor(colors[i]);
-			buttons[i].setX(160 + (int)(100*Math.cos(i*2*Math.PI/(buttonCount))));
-			buttons[i].setY(200 - (int)(100*Math.sin(i*2*Math.PI/(buttonCount))));
-			final ButtonInterfaceDaniel b = buttons[i];
+			final ButtonInterfaceDaniel b = getAButton();
+			b.setColor(colors[i]);
+			b.setX(160 + (int)(100*Math.cos(i*2*Math.PI/(buttonCount))));
+			b.setY(200 - (int)(100*Math.sin(i*2*Math.PI/(buttonCount))));
 			buttons[i].setAction(new Action(){
 
 				public void act(){
@@ -165,7 +164,7 @@ public class SimonScreenDaniel extends ClickableScreen implements Runnable{
 
 	private ButtonInterfaceDaniel getAButton() {
 		// TODO Auto-generated method stub
-		return new Button();
+		return null;
 	}
 
 
