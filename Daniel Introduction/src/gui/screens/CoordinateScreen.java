@@ -16,95 +16,78 @@ import gui.components.TextLable;
 import gui.components.Visible;
 import gui.samplename.MouseFollower;
 
-public class CoordinateScreen extends Screen implements MouseMotionListener,MouseListener{
-	private Button myButton;
-	private TextLable text;
-	private TextArea area;
-	private Graphic image;
+public class CoordinateScreen extends Screen 
+implements MouseMotionListener{
 
-	public CoordinateScreen(int width, int height)  {
+
+	//FIELD
+	private Button button;
+	private TextLable text;
+	private TextArea area; 
+	private Graphic bowser;
+
+	public CoordinateScreen(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
 	}
 
-	public void initObject(ArrayList<Visible> viewObjects) {
-		text = new TextLable(20, 150, 500, 40, "Some text");
-		viewObjects.add(text);
-		myButton = new Button(100,100,100,30,"Button",new Color(100,100,250), new Action(){
-			public void act(){
-				MouseFollower.game.setScreen(MouseFollower.clickScreen);
+	@Override
+	public void initObjects(ArrayList<Visible> viewObjects) {
+		button = new Button(20,100,80,40,
+				"The Button with a long name",new Color(100,100,250),
+				new Action() {
+
+			public void act() {
+				// TODO Auto-generated method stub
+
 			}
 		});
-		viewObjects.add(myButton);
-		area = new TextArea(20, 200, 500, 100, "Hello darkness my old friend I've come to talk with you again");
+		viewObjects.add(button);
+		text = 
+				new TextLable(20, 100, 500, 40, "Some text");
+		viewObjects.add(text);
+
+		area = 
+				new TextArea(20, 200, 500, 100, "This is "
+						+ "really long text. It prints over"
+						+ " multiple lines, as you can see. "
+						+ "We worked on this in class. It"
+						+ " is called TextArea.");
 		viewObjects.add(area);
-		image = new Graphic(30,300,0.5,"resources/sampleImages/hip.png");
-		viewObjects.add(image);
+
+		bowser = new Graphic(30,30,.5, "resources/"
+				+ "sampleImages/hip.png"); 
+		viewObjects.add(bowser);
 		MovingComponent c = new MovingComponent(20, 20, 100, 100);
 		viewObjects.add(c);
 		c.setVy(2);
-		c.setVy(1);
+		c.setVx(1);
 		c.play();
 	}
 
-	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void mouseMoved(MouseEvent e) {
-		int mx = e.getX();
-		int my = e.getY();
-		text.setText("Mouse at " +mx+", "+ my);
+		int mx = e.getX();//get mouse X coordinate
+		int my = e. getY();//get Y coord
+		text.setText("Mouse at: "+mx +", "+my);
 	}
 
-	public MouseMotionListener getMouseMotionListener(){
+	public MouseMotionListener getMouseMotionListener(){ 
 		return this;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if(myButton.isHovered(e.getX(), e.getY())){
-			myButton.act();
-		}
-	}
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 
-	}
 
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 
-	}
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 
-	}
 
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 
-	}
-
-	public MouseListener getMouseListener(){
-		return this;
-
-	}
-
-	@Override
-	public void initObjects(ArrayList<Visible> viewObjects) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 }
