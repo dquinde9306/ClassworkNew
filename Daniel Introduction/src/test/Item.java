@@ -11,5 +11,9 @@ public class Item {
 		this.purchased = false;
 		
 	}
+	public void setPurchased(boolean b){
+		purchased = b;
+	}
+	
 
 }
