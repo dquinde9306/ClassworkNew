@@ -14,6 +14,15 @@ public class Item {
 	public void setPurchased(boolean b){
 		purchased = b;
 	}
+	public boolean isPurchased() {
+		// TODO Auto-generated method stub
+		return purchased;
+	}
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return description;
+
+	}
 	
 
 }
