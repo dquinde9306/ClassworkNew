@@ -58,13 +58,19 @@ public class Server extends JFrame {
 		}
 	}
 
+
+
 	private void waitForConnection() throws IOException {
 		showMessage("Waiting for someone to connect");
 		connection = server.accept();
-		
+		showMessage(" Now connected to " + connection.getInetAddress().getHostName());
+
 	}
 	
-	
+	private void setupStreams() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	
