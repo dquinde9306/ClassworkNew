@@ -41,6 +41,8 @@ public class Server extends JFrame {
 			while(true){
 				try {
 					waitForConnection();
+					setupStreams();
+					whileChatting();
 					
 				} catch (EOFException eofException) {
 					showMessage("\n Server ended the connection.");
@@ -54,6 +56,12 @@ public class Server extends JFrame {
 			ioException.printStackTrace();
 			
 		}
+	}
+
+	private void waitForConnection() throws IOException {
+		showMessage("Waiting for someone to connect");
+		connection = server.accept();
+		
 	}
 	
 	
