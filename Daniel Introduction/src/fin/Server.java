@@ -20,6 +20,19 @@ public class Server extends JFrame {
 		super("Apollo");
 		userText = new JTextField();
 		userText.setEditable(false);
+		userText.addActionListener(
+				
+					new ActionListener(){
+						public void actionPerformed(ActionEvent event){
+							sendMessage(event.getActionCommand());
+							userText.setText("");
+						}
+					}
+				
+				
+				
+				
+				);
 		
 	}
 	
