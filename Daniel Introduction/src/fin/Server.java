@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Server extends JFrame {
 	
 	private JTextField userText;
-	private JTextArea chatWidow;
+	private JTextArea chatWindow;
 	private ObjectOutputStream output; 
 	private ObjectInputStream input;	
 	private ServerSocket server;
@@ -21,19 +21,17 @@ public class Server extends JFrame {
 		userText = new JTextField();
 		userText.setEditable(false);
 		userText.addActionListener(
-				
 					new ActionListener(){
 						public void actionPerformed(ActionEvent event){
 							sendMessage(event.getActionCommand());
 							userText.setText("");
 						}
-					}
-				
-				
-				
-				
+					}				
 				);
-		
+		add(userText,BorderLayout.NORTH);
+		chatWindow = new JTextArea();
+		add(new JScrollPane(chatWindow));
+		setSize(300,150);
 	}
 	
 	
