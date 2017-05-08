@@ -32,6 +32,28 @@ public class Server extends JFrame {
 		chatWindow = new JTextArea();
 		add(new JScrollPane(chatWindow));
 		setSize(300,150);
+		setVisible(true);
+	}
+	
+	public void startRunning(){
+		try{
+			server = new ServerSocket(6789, 100);
+			while(true){
+				try {
+					waitForConnection();
+					
+				} catch (EOFException eofException) {
+					showMessage("\n Server ended the connection.");
+				}
+				finally{
+					close();
+				}
+			}
+		}
+		catch(IOException ioException){
+			ioException.printStackTrace();
+			
+		}
 	}
 	
 	
