@@ -67,9 +67,10 @@ public class Server extends JFrame {
 
 	}
 	
-	private void setupStreams() {
-		// TODO Auto-generated method stub
-		
+	private void setupStreams() throws IOException{
+		output = new ObjectOutputStream(connection.getOutputStream());
+		output.flush();
+		input = new ObjectInputStream(connection.getInputStream());
 	}
 	
 	
