@@ -12,15 +12,36 @@ Thursday May 4th 2017
 	I have been able to find all of the resources necessary for me to make the chatroom. My hope for 
 	tomorrow will be to start the creation of the server and client. Using the resources that I have found, I 
 	doubt it will be too complicated.
+
+
 	
 Friday May 5th 2017
 	
 	Today I was able to start the creation of the server as well as get a better understanding of how sockets 
 	and connections work in Java. On Monday, I will continue creating the server and later work on the client side but 
 	I doubt that I will get that far.
+
+
+
+
 	
 Monday May 8th 2017
 
 	Today I was able to finish he constructor for the server as well as create a few methods that are needed to
 	connect multiple computers together. Tomorrow I will attempt to finish the methods that I did not complete
 	today.	
+	
+
+Tuesday May 9th 2017
+
+	This day I was able to complete a few more of those methods that I was unable to complete yesterday.
+	I will continue to complete the methods I need tomorrow, I need to develop the other parts of the chat app
+	soon, I doubt I will start that tomorrow since the server is my main priority at the moment.
+	
+	
+	
+	
+	
+	
+	
+	

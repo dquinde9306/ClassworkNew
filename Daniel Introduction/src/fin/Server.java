@@ -60,6 +60,8 @@ public class Server extends JFrame {
 
 
 
+
+	
 	private void waitForConnection() throws IOException {
 		showMessage("Waiting for someone to connect");
 		connection = server.accept();
@@ -71,8 +73,44 @@ public class Server extends JFrame {
 		output = new ObjectOutputStream(connection.getOutputStream());
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
+		showMessage("\n Streams are now setup");
+
 	}
 	
+	private void whileChatting()  throws IOException {
+		String message = " You are now connected!";
+		sendMessage(message);
+		ableToType(true);
+		do{
+			
+			try {
+				message = (String) input.readObject()
+				showMessage("\n " + message);
+				
+			} catch (ClassNotFoundException classNotFoundException) {
+				showMessage("What?");
+			
+			}
+			
+		}while(!message.equals("CLLIENT - END"));
+		
+		
+		
+	}
+	
+	private void close() {
+		showMessage("\n Closing connections \n");
+		ableToType(false);
+		try {
+			output.close();
+			input.close();
+			connection.close();
+		} catch (IOException ioException) {
+			
+		
+		}
+	}
+
 	
 	
 	
