@@ -143,7 +143,7 @@ public class Server extends JFrame {
 		
 	}
 
-	private void ableToType(boolean b) {
+	private void ableToType(final boolean b) {
 		
 		
 	}
