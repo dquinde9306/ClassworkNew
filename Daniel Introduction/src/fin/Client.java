@@ -1,5 +1,13 @@
 package fin;
 
-public class Client {
+import java.io.*;
+import java.net.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class Client extends JFrame {
+	private JTextField userText;
+	private JTextArea chatWindow;
 
 }
