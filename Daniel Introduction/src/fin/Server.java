@@ -113,6 +113,7 @@ public class Server extends JFrame {
 		}
 	}
 
+
 	private void sendMessage(String message) {
 		try {
 			output.writeObject("SERVER - " + message);
@@ -126,6 +127,20 @@ public class Server extends JFrame {
 		
 		
 	}
+	
+	private void showMessage(final String text) {
+		SwingUtilities.invokeLater(
+				new Runnable(){
+					public void run(){
+						chatWindow.append(text);
+					}
+				}
+					
+				
+		);
+		
+	}
+
 	
 	
 	
