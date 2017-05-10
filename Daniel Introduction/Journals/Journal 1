@@ -41,7 +41,9 @@ Tuesday May 9th 2017
 	
 Wednesday May 10th 2017
 	
-	
+	I was able to finally finish the server side of the chatting program today. When I tested it with my ServerTest
+	class it was able to show the chat window and displayed the text it was supposed to. Other than that it did not 
+	do much of anything. Tomorrow I will move on to the client side and see where that takes me. 
 	
 	
 	
