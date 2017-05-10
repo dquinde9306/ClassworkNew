@@ -86,7 +86,7 @@ public class Server extends JFrame {
 		do{
 			
 			try {
-				message = (String) input.readObject()
+				message = (String) input.readObject();
 				showMessage("\n " + message);
 				
 			} catch (ClassNotFoundException classNotFoundException) {
@@ -112,6 +112,8 @@ public class Server extends JFrame {
 		
 		}
 	}
+
+
 
 
 	private void sendMessage(String message) {
@@ -141,6 +143,10 @@ public class Server extends JFrame {
 		
 	}
 
+	private void ableToType(boolean b) {
+		
+		
+	}
 	
 	
 	
