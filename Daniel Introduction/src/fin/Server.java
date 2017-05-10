@@ -144,7 +144,15 @@ public class Server extends JFrame {
 	}
 
 	private void ableToType(final boolean b) {
-		
+		SwingUtilities.invokeLater(
+				new Runnable(){
+					public void run(){
+						userText.setEditable(b);
+					}
+				}
+				);
+				
+				
 		
 	}
 	
