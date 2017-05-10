@@ -26,6 +26,8 @@ public class Server extends JFrame {
 							sendMessage(event.getActionCommand());
 							userText.setText("");
 						}
+
+						
 					}				
 				);
 		add(userText,BorderLayout.NORTH);
@@ -111,6 +113,19 @@ public class Server extends JFrame {
 		}
 	}
 
+	private void sendMessage(String message) {
+		try {
+			output.writeObject("SERVER - " + message);
+			output.flush();
+			showMessage("\n SERVER - " + message); 
+			
+		} catch (IOException ioException) {
+			chatWindow.append("Unable to send message");
+			
+		}
+		
+		
+	}
 	
 	
 	
