@@ -72,6 +72,24 @@ public class Client extends JFrame {
 		
 	}
 	
+	private void whileChatting() throws IOException{
+		ableToType(true);
+		do{
+			
+			try {
+				message = (String) input.readObject();	
+				showMessage("\n " + message);
+				
+				
+			} catch (ClassNotFoundException classNotFoundException) {
+				showMessage("Unknown object ");
+			}
+			
+			
+		}while(!message.equals("SERVER - END"));
+		
+	}
+	
 	
 	
 
