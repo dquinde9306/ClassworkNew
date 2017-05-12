@@ -23,7 +23,7 @@ public class Client extends JFrame {
 		userText.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent event){
-						sendData(event.getActionCommand());
+						sendMessage(event.getActionCommand());
 						userText.setText(" ");
 						
 					}					
@@ -34,6 +34,28 @@ public class Client extends JFrame {
 		add(new JScrollPane(chatWindow), BorderLayout.CENTER);
 		setSize(300,150);
 		setVisible(true);
+	}
+	
+	public void startRunning(){
+		
+		try {
+			connectToServer();
+			setupStreams();
+			whileChatting();
+			
+		} catch (EOFException eofException) {
+			showMessage("\n Client ended connection");
+			
+			
+		
+		}catch(IOException ioException){
+			
+			ioException.printStackTrace();
+		}finally{
+			close();
+		}
+		
+		
 	}
 	
 	
