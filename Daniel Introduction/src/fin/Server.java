@@ -17,7 +17,7 @@ public class Server extends JFrame {
 	private Socket connection;
 
 	public Server(){
-		super("Apollo");
+		super("Yellow Submarine");
 		userText = new JTextField();
 		userText.setEditable(false);
 		userText.addActionListener(
@@ -65,7 +65,7 @@ public class Server extends JFrame {
 
 	
 	private void waitForConnection() throws IOException {
-		showMessage("Waiting for someone to connect");
+		showMessage("Waiting for someone to connect...");
 		connection = server.accept();
 		showMessage(" Now connected to " + connection.getInetAddress().getHostName());
 
