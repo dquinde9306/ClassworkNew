@@ -5,7 +5,7 @@ public class ClientTest {
 
 	public static void main(String[] args) {
 		Client john;
-		john = new Client("165.155.196.87");
+		john = new Client("127.0.0.1");
 		john.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		john.startRunning();
 	}
