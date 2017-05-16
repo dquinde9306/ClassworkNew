@@ -145,6 +145,5 @@ public class Client extends JFrame {
 	}
 
 
-
 }
 
