@@ -126,9 +126,9 @@ public class Client extends JFrame {
 
 	private void sendMessage(String message){
 		try {
-			output.writeObject("CLIENT - " + message);
+			output.writeObject("\n" + username + " - " + message);
 			output.flush();
-			showMessage("\n " + username + " - " + message); 
+			showMessage("\n" + username + " - " + message); 
 		} catch (IOException ioException) {
 			chatWindow.append("\n Error sending message!");
 		}

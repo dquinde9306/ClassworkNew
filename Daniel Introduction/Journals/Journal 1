@@ -58,3 +58,9 @@ Tuesday May 16th 2017
 	Today I finished the basic chatting app! It is able to send messages back and forth although it only 
 	works on one computer. I was able to fix some other things on the app, like the ability to edit where you 
 	shouldn't be able to. I will now move on to adding stuff to it and general debugging.
+	
+Wednesday May 17th 2017
+
+	Today I made a few changes to the chat bot. I repositioned the chat bar, and more importantly added the 
+	ability to add usernames. There is a weird spacing issue I've noticed that I will try to fix tomorrow
+	as well as clear  any other problems I find. 

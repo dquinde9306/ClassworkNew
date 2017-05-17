@@ -121,9 +121,9 @@ public class Server extends JFrame {
 
 	private void sendMessage(String message) {
 		try {
-			output.writeObject("SERVER - " + message);
+			output.writeObject("\n" + username + " - " + message);
 			output.flush();
-			showMessage("\n " + username + " - " + message); 
+			showMessage("\n" + username + " - " + message); 
 			
 		} catch (IOException ioException) {
 			chatWindow.append("Unable to send message");
