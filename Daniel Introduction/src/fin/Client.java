@@ -20,7 +20,7 @@ public class Client extends JFrame {
 	public Client(String host,String username){
 		super("Client");
 		serverIP = host;
-		username = this.username;
+		 this.username = username;
 		userText = new JTextField();
 		userText.setEditable(false);
 		userText.addActionListener(
