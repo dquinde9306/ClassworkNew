@@ -15,9 +15,11 @@ public class Server extends JFrame {
 	private ObjectInputStream input;	
 	private ServerSocket server;
 	private Socket connection;
+	private String username;
 
-	public Server(){
+	public Server(String username){
 		super("Yellow Submarine");
+		 this.username = username;
 		userText = new JTextField();
 		userText.setEditable(false);
 		userText.addActionListener(
@@ -121,7 +123,7 @@ public class Server extends JFrame {
 		try {
 			output.writeObject("SERVER - " + message);
 			output.flush();
-			showMessage("\n SERVER - " + message); 
+			showMessage("\n " + username + " - " + message); 
 			
 		} catch (IOException ioException) {
 			chatWindow.append("Unable to send message");

@@ -14,10 +14,13 @@ public class Client extends JFrame {
 	private String message = " ";
 	private String serverIP;
 	private Socket connection;
+	private String username;
 
-	public Client(String host){
+
+	public Client(String host,String username){
 		super("Client");
 		serverIP = host;
+		username = this.username;
 		userText = new JTextField();
 		userText.setEditable(false);
 		userText.addActionListener(
@@ -125,7 +128,7 @@ public class Client extends JFrame {
 		try {
 			output.writeObject("CLIENT - " + message);
 			output.flush();
-			showMessage("\n CLIENT - " + message);
+			showMessage("\n " + username + " - " + message); 
 		} catch (IOException ioException) {
 			chatWindow.append("\n Error sending message!");
 		}
