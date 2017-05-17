@@ -30,7 +30,7 @@ public class Server extends JFrame {
 						
 					}				
 				);
-		add(userText,BorderLayout.NORTH);
+		add(userText,BorderLayout.SOUTH);
 		chatWindow = new JTextArea();
 		chatWindow.setEditable(false);
 		add(new JScrollPane(chatWindow));
@@ -76,12 +76,12 @@ public class Server extends JFrame {
 		output = new ObjectOutputStream(connection.getOutputStream());
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
-		showMessage("\n Streams are now setup");
+		showMessage("\n Streams are now setup ");
 
 	}
 	
 	private void whileChatting()  throws IOException {
-		String message = " You are now connected!";
+		String message = " You are now connected! ";
 		sendMessage(message);
 		ableToType(true);
 		do{
