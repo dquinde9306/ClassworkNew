@@ -67,7 +67,7 @@ public class Client extends JFrame {
 	private void connectToServer() throws IOException {
 		showMessage("Attempting to connect to server \n");
 		connection = new Socket(InetAddress.getByName(serverIP),6789);
-		showMessage("Connected to: " + connection.getInetAddress().getHostName() );
+		showMessage("Connected to: " + connection.getInetAddress().getHostName() + " " );
 	}
 
 	private void setupStreams() throws IOException{
@@ -84,7 +84,7 @@ public class Client extends JFrame {
 
 			try {
 				message = (String) input.readObject();	
-				showMessage("\n " + message);
+				showMessage( message);
 
 
 			} catch (ClassNotFoundException classNotFoundException) {

@@ -70,7 +70,7 @@ public class Server extends JFrame {
 	private void waitForConnection() throws IOException {
 		showMessage("Waiting for someone to connect...");
 		connection = server.accept();
-		showMessage(" Now connected to " + connection.getInetAddress().getHostName());
+		showMessage(" Now connected to " + connection.getInetAddress().getHostName() + " ");
 
 	}
 	
@@ -90,14 +90,14 @@ public class Server extends JFrame {
 			
 			try {
 				message = (String) input.readObject();
-				showMessage("\n " + message);
+				showMessage( message);
 				
 			} catch (ClassNotFoundException classNotFoundException) {
 				showMessage("What?");
 			
 			}
 			
-		}while(!message.equals("CLLIENT - END"));
+		}while(!message.equals("CLIENT - END"));
 		
 		
 		
