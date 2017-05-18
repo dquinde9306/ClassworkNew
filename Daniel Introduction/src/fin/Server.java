@@ -78,7 +78,7 @@ public class Server extends JFrame {
 		output = new ObjectOutputStream(connection.getOutputStream());
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
-		showMessage("\n Streams are now setup! ");
+		showMessage("\n Streams are now setup! \n");
 
 	}
 	
@@ -97,14 +97,14 @@ public class Server extends JFrame {
 			
 			}
 			
-		}while(!message.equals("CLIENT - END"));
+		}while(!message.contains("END CHAT"));
 		
 		
 		
 	}
 	
 	private void close() {
-		showMessage("\n Closing connections \n");
+		showMessage("\n Closing connections\n \n");
 		ableToType(false);
 		try {
 			output.close();

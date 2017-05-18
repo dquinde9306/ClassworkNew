@@ -74,7 +74,7 @@ public class Client extends JFrame {
 		output = new ObjectOutputStream(connection.getOutputStream());
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
-		showMessage("\n Streams are setup!");
+		showMessage("\n Streams are setup! \n");
 
 	}
 
@@ -92,12 +92,12 @@ public class Client extends JFrame {
 			}
 
 
-		}while(!message.equals("SERVER - END"));
+		}while(!message.contains("END CHAT"));
 
 	}
 
 	private void close() {
-		showMessage("Shutting down... ");
+		showMessage("\n Shutting down... ");
 		ableToType(false);
 		try {
 			output.close();
