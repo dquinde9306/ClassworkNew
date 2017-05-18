@@ -65,7 +65,7 @@ public class Client extends JFrame {
 
 
 	private void connectToServer() throws IOException {
-		showMessage("Attempting to connect to server \n");
+		showMessage("Attempting to connect to server... \n");
 		connection = new Socket(InetAddress.getByName(serverIP),6789);
 		showMessage("Connected to: " + connection.getInetAddress().getHostName() + " " );
 	}
@@ -74,7 +74,7 @@ public class Client extends JFrame {
 		output = new ObjectOutputStream(connection.getOutputStream());
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
-		showMessage("Streams are setup!");
+		showMessage("\n Streams are setup!");
 
 	}
 
