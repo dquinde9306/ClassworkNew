@@ -32,6 +32,8 @@ public class Server extends JFrame {
 						
 					}				
 				);
+		
+		userText.setText("Type here!");
 		add(userText,BorderLayout.SOUTH);
 		chatWindow = new JTextArea();
 		chatWindow.setEditable(false);
