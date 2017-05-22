@@ -32,6 +32,8 @@ public class Server extends JFrame {
 						
 					}				
 				);
+		
+		userText.setText("Type here!");
 		add(userText,BorderLayout.SOUTH);
 		chatWindow = new JTextArea();
 		chatWindow.setEditable(false);
@@ -68,9 +70,9 @@ public class Server extends JFrame {
 
 	
 	private void waitForConnection() throws IOException {
-		showMessage("Waiting for someone to connect...");
+		showMessage("Waiting for someone to connect... \n");
 		connection = server.accept();
-		showMessage(" Now connected to " + connection.getInetAddress().getHostName());
+		showMessage(" Now connected to " + connection.getInetAddress().getHostName() + " ");
 
 	}
 	
@@ -78,7 +80,7 @@ public class Server extends JFrame {
 		output = new ObjectOutputStream(connection.getOutputStream());
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
-		showMessage("\n Streams are now setup ");
+		showMessage("\n Streams are now setup! \n");
 
 	}
 	
@@ -90,21 +92,21 @@ public class Server extends JFrame {
 			
 			try {
 				message = (String) input.readObject();
-				showMessage("\n " + message);
+				showMessage( message);
 				
 			} catch (ClassNotFoundException classNotFoundException) {
 				showMessage("What?");
 			
 			}
 			
-		}while(!message.equals("CLLIENT - END"));
+		}while(!message.contains("END CHAT"));
 		
 		
 		
 	}
 	
 	private void close() {
-		showMessage("\n Closing connections \n");
+		showMessage("\n Closing connections\n \n");
 		ableToType(false);
 		try {
 			output.close();
@@ -121,9 +123,9 @@ public class Server extends JFrame {
 
 	private void sendMessage(String message) {
 		try {
-			output.writeObject("SERVER - " + message);
+			output.writeObject("\n" + username + " - " + message);
 			output.flush();
-			showMessage("\n " + username + " - " + message); 
+			showMessage("\n" + username + " - " + message); 
 			
 		} catch (IOException ioException) {
 			chatWindow.append("Unable to send message");
