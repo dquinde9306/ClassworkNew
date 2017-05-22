@@ -39,7 +39,7 @@ public class Login {
 		frame.setVisible(true);
 	}
 	
-	public static void buttons(){
+	public static void buttons(){ 
 		
 	}
 
