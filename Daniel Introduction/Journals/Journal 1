@@ -70,3 +70,10 @@ Thursday May 18th 2017
 	from yesterday as well as fix other minor issues with the format. I made it easier to properly close
 	the app, all one has to do now is to include END CHAT in their message in all caps to end the 
 	conversation. I also added some placeholder text to let the user know where to type.
+	
+Monday May 22nd 2017
+	
+	Today I was able to add actual placeholder text as opposed to what I did on Thursday. I did this
+	by using a class I found which uses JLabel. I also began to research a possible improvement to the
+	app by adding the ability to connect multiple clients to the same chat. tomorrow I will continue to do
+	research and hopefully start to work on the multiclient server. 
