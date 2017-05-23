@@ -15,6 +15,7 @@ public class Client extends JFrame {
 	private String serverIP;
 	private Socket connection;
 	private String username;
+	private TextPrompt tp;
 
 
 	public Client(String host,String username){
@@ -32,7 +33,9 @@ public class Client extends JFrame {
 					}					
 				}
 				);
-		userText.setText("Type here!");
+		tp = new TextPrompt("Type Here!",userText);
+		tp.setForeground(Color.GRAY);
+		tp.changeStyle(Font.BOLD + Font.ITALIC);
 		add(userText,BorderLayout.SOUTH);
 		chatWindow = new JTextArea();
 		chatWindow.setEditable(false);
