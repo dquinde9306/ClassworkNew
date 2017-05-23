@@ -77,3 +77,10 @@ Monday May 22nd 2017
 	by using a class I found which uses JLabel. I also began to research a possible improvement to the
 	app by adding the ability to connect multiple clients to the same chat. tomorrow I will continue to do
 	research and hopefully start to work on the multiclient server. 
+	
+Tuesday May 23rd 2017
+
+	Today I started working on the multi-client server. I created in a new class in order to ensure that my
+	one to one server remains intact if I am unable to complete this one. It will deviate significantly
+	since I no longer need the server to act as the other side of the conversation. I will continue to work
+	on this tomorrow.
