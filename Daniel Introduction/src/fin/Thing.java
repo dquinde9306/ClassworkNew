@@ -43,7 +43,7 @@ public class Thing extends Applet
     int value, total;;
     Object cause = event.getSource();
 
-    //if (cause == b_Up)
+    //if (cause == b_Up) 
 
   }
 
