@@ -1,11 +1,18 @@
 package fin;
 
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.swing.AbstractButton;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-public class Login {
+public class Login extends JPanel
+//implements ActionListener
+{
 	
 	
 	static Scanner input = new Scanner(System.in);
@@ -15,10 +22,12 @@ public class Login {
 	}
 	
 	private static ArrayList<String> usernames = new ArrayList<String>();
+	private static JButton b1;
+	private static JButton b2;
 	
 	public static void main(String[] args){
 		window();
-		
+		buttons();
 		usernames.add("a");
 		System.out.println("user?");
 		String entry = waitForEntry();
@@ -33,14 +42,34 @@ public class Login {
 	}
 	
 	public static void window(){
-		JFrame frame = new JFrame("This is my frame");
+			javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+			createAndShowGUI(); 
+			}
+			});
+			}
+
+	
+
+	private static void createAndShowGUI() {
+
+		//Create and set up the window.
+		JFrame frame = new JFrame("Register or Login?");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(300,400);
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		ButtonDemo newContentPane = new ButtonDemo();
+		newContentPane.setOpaque(true); //content panes must be opaque
+		frame.setContentPane(newContentPane);
+	
+		//Display the window.
+		frame.pack();
 		frame.setVisible(true);
 	}
-	
+
 	public static void buttons(){ 
-		
+		b1 = new JButton("Register");
+		b2 = new JButton("Login");
+
 	}
 
 }
