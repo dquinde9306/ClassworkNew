@@ -84,3 +84,10 @@ Tuesday May 23rd 2017
 	one to one server remains intact if I am unable to complete this one. It will deviate significantly
 	since I no longer need the server to act as the other side of the conversation. I will continue to work
 	on this tomorrow.
+
+Wednesday May 24th 2017
+
+	Today I continued to work on the multi-client server and I think I made some good progress on it.
+	I will try to spend time to debug since it doesn't really work at this time. I might also try to 
+	add some other feature to it like the ability to send images which might be easier. I will
+	try to do both.
