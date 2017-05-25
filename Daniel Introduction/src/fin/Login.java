@@ -1,5 +1,6 @@
 package fin;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -42,12 +43,12 @@ public class Login extends JPanel
 	}
 	
 	public static void window(){
-			javax.swing.SwingUtilities.invokeLater(new Runnable() {
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-			createAndShowGUI(); 
+				createAndShowGUI(); 
 			}
-			});
-			}
+		});
+	}
 
 	
 
@@ -56,20 +57,22 @@ public class Login extends JPanel
 		//Create and set up the window.
 		JFrame frame = new JFrame("Register or Login?");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(300,400);
+		
 		ButtonDemo newContentPane = new ButtonDemo();
 		newContentPane.setOpaque(true); //content panes must be opaque
 		frame.setContentPane(newContentPane);
 	
 		//Display the window.
-		frame.pack();
+		frame.setSize(300,400);
 		frame.setVisible(true);
+//		frame.add(b1, BorderLayout.PAGE_START); 
 	}
 
 	public static void buttons(){ 
 		b1 = new JButton("Register");
 		b2 = new JButton("Login");
-
+		//b1.setLayout(null);
+		
 	}
 
 }

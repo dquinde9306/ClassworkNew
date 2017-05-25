@@ -1,51 +1,88 @@
 package fin;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 
-public class ButtonDemo extends JPanel 
-//implements ActionListener
-{
- private static JButton b1, b2;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
+public class ButtonDemo extends JPanel
+implements ActionListener {
+protected static JButton b1;
+protected static JButton b2;
+protected static JButton b3;
 
 public ButtonDemo() {
-	b1 = new JButton("Register");
-	b1.setMargin(null);
-	b1.setHorizontalAlignment(AbstractButton.CENTER); //aka LEFT, for left-to-right locales
 
-	b2 = new JButton("Login");
-	b2.setVerticalAlignment(AbstractButton.BOTTOM);
-	b2.setHorizontalAlignment(AbstractButton.CENTER);
+//JPanel bu1 = new JPanel();
+//bu1.add(b1);
+//this.add(bu1);
 
 
-//b3 = new JButton("3");
+b1 = new JButton("Disable middle button");
+b1.setVerticalTextPosition(AbstractButton.CENTER);
+b1.setHorizontalTextPosition(AbstractButton.LEADING); //aka LEFT, for left-to-right locales
+b1.setMnemonic(KeyEvent.VK_D);
+b1.setActionCommand("disable");
+
+JPanel bu2 = new JPanel();
+b2 = new JButton("Middle button");
+b2.setVerticalTextPosition(AbstractButton.BOTTOM);
+b2.setHorizontalTextPosition(AbstractButton.CENTER);
+b2.setMnemonic(KeyEvent.VK_M);
+
+JPanel bu3 = new JPanel();
+b3 = new JButton("Enable middle button");
 //Use the default text position of CENTER, TRAILING (RIGHT).
-//b3.setActionCommand("enable");
-//b3.setEnabled(false);
+b3.setMnemonic(KeyEvent.VK_E);
+b3.setActionCommand("enable");
+b3.setEnabled(false);
 
 //Listen for actions on buttons 1 and 3.
-//b1.addActionListener(this);
-//b3.addActionListener(this);
+b1.addActionListener(this);
+b3.addActionListener(this);
 
-//b1.setToolTipText("Click this button to disable the middle button.");
-//b2.setToolTipText("This middle button does nothing when you click it.");
-//b3.setToolTipText("Click this button to enable the middle button.");
+b1.setToolTipText("Click this button to disable the middle button.");
+b2.setToolTipText("This middle button does nothing when you click it.");
+b3.setToolTipText("Click this button to enable the middle button.");
 
 //Add Components to this container, using the default FlowLayout.
 add(b1);
 add(b2);
+add(b3);
+
+//b1.setLayout(new BorderLayout());
+//b1.add(bu1,BorderLayout.SOUTH);
+
 }
 
-//public void actionPerformed1(ActionEvent e) {
-//
-//}
+public void actionPerformed(ActionEvent e) {
+if ("disable".equals(e.getActionCommand())) {
+b2.setEnabled(false);
+b1.setEnabled(false);
+b3.setEnabled(true);
+} else {
+b2.setEnabled(true);
+b1.setEnabled(true);
+b3.setEnabled(false);
+}
+}
 
-
+/** Returns an ImageIcon, or null if the path was invalid. */
+protected static ImageIcon createImageIcon(String path) {
+java.net.URL imgURL = ButtonDemo.class.getResource(path);
+if (imgURL != null) {
+return new ImageIcon(imgURL);
+} else {
+System.err.println("Couldn't find file: " + path);
+return null;
+}
+}
 
 /**
 * Create the GUI and show it.  For thread safety, 
@@ -63,9 +100,16 @@ ButtonDemo newContentPane = new ButtonDemo();
 newContentPane.setOpaque(true); //content panes must be opaque
 frame.setContentPane(newContentPane);
 
+//frame.add(b1, BorderLayout.PAGE_START); 
+//frame.add(b2, BorderLayout.WEST); 
+//frame.add(b3, BorderLayout.PAGE_END); 
+
+
 //Display the window.
-frame.pack();
+frame.setSize(800,800);
 frame.setVisible(true);
+
+
 }
 
 public static void main(String[] args) {
@@ -77,18 +121,4 @@ createAndShowGUI();
 }
 });
 }
-
-//@Override
-//public void actionPerformed(ActionEvent e) {
-//	// TODO Auto-generated method stub
-//	if ("disable".equals(e.getActionCommand())) {
-//		b2.setEnabled(false);
-//		b1.setEnabled(false);
-//		b3.setEnabled(true);
-//		} else {
-//		b2.setEnabled(true);
-//		b1.setEnabled(true);
-//		b3.setEnabled(false);
-//		}
-//}
 }
