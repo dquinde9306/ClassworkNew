@@ -2,9 +2,15 @@ package fin;
 
 import java.io.*;
 import java.net.*;
+import java.nio.ByteBuffer;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*; 
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+import introUnit.Student; 
 
 
 public class Server extends JFrame {
@@ -125,6 +131,9 @@ public class Server extends JFrame {
 
 	private void sendMessage(String message) {
 		try {
+			if(message.contains("IMAGE")){
+				sendImage();
+			}
 			output.writeObject("\n" + username + " - " + message);
 			output.flush();
 			showMessage("\n" + username + " - " + message); 
@@ -163,7 +172,15 @@ public class Server extends JFrame {
 		
 	}
 	
-	
+	private void sendImage() throws IOException{
+		BufferedImage image = ImageIO.read(new File( "file:///C:/Users/Student%206/Git/ClassworkNew/Daniel%20Introduction/resources/sampleImages/hip.png"));
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ImageIO.write(image, "png", byteArrayOutputStream);
+        byte[]size = ByteBuffer.allocate(4).putInt();
 
+	}
 	
-}
+	
+	
+		
+	}

@@ -91,3 +91,10 @@ Wednesday May 24th 2017
 	I will try to spend time to debug since it doesn't really work at this time. I might also try to 
 	add some other feature to it like the ability to send images which might be easier. I will
 	try to do both.
+	
+Thursday May 25th 2017
+
+	I choose not to work on the multi-server today but I worked on the image sender instead. I am almost done coding the
+	server side of the image sender and I will have to work on the image receiver in the client class. Afterward, I 
+	will have to do the reverse meaning that I will put a receiver in the sever and a sender in the client. I will work
+	on this tomorrow.
