@@ -2,9 +2,15 @@ package fin;
 
 import java.io.*;
 import java.net.*;
+import java.nio.ByteBuffer;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*; 
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+import introUnit.Student; 
 
 
 public class Server extends JFrame {
@@ -94,6 +100,10 @@ public class Server extends JFrame {
 			
 			try {
 				message = (String) input.readObject();
+				if(message.contains("IMAGE")){
+					sendImage();
+				}
+				else
 				showMessage( message);
 				
 			} catch (ClassNotFoundException classNotFoundException) {
@@ -125,12 +135,14 @@ public class Server extends JFrame {
 
 	private void sendMessage(String message) {
 		try {
+			
 			output.writeObject("\n" + username + " - " + message);
 			output.flush();
 			showMessage("\n" + username + " - " + message); 
 			
+			
 		} catch (IOException ioException) {
-			chatWindow.append("Unable to send message");
+			chatWindow.append("\n Unable to send message");
 			
 		}
 		
@@ -163,7 +175,18 @@ public class Server extends JFrame {
 		
 	}
 	
-	
+	private void sendImage() throws IOException{
+		BufferedImage image = ImageIO.read(new FileInputStream("resources/sampleImages/mole.jpg"));
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ImageIO.write(image, "jpg", byteArrayOutputStream);
+        byte[]size = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
+        output.write(size);
+        output.write(byteArrayOutputStream.toByteArray());
+        output.flush();
 
+	}
 	
-}
+	
+	
+		
+	}
