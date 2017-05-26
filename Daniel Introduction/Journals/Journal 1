@@ -98,3 +98,10 @@ Thursday May 25th 2017
 	server side of the image sender and I will have to work on the image receiver in the client class. Afterward, I 
 	will have to do the reverse meaning that I will put a receiver in the sever and a sender in the client. I will work
 	on this tomorrow.
+	
+Friday May 26th 2017
+
+	I continued to work on the image sender and receiver for the server and client respectively. I was unable
+	to get it working to day but I think I have found a solution which I will try to apply Tuesday. I will then
+	try to get the client to send images to the server which I don't think will be as hard once I find the
+	solution.

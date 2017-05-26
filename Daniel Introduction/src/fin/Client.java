@@ -2,8 +2,13 @@ package fin;
 
 import java.io.*;
 import java.net.*;
+import java.nio.ByteBuffer;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
 import javax.swing.*;
 
 public class Client extends JFrame {
@@ -16,6 +21,7 @@ public class Client extends JFrame {
 	private Socket connection;
 	private String username;
 	private TextPrompt tp;
+	private BufferedImage image;
 
 
 	public Client(String host,String username){
@@ -87,9 +93,13 @@ public class Client extends JFrame {
 		do{
 
 			try {
-				message = (String) input.readObject();	
+				message = (String) input.readObject();
+				if(message.contains("IMAGE")){
+					image = (BufferedImage) input.readObject();
+					receiveImage();
+				}
+				else
 				showMessage( message);
-
 
 			} catch (ClassNotFoundException classNotFoundException) {
 				showMessage("Unknown object ");
@@ -98,6 +108,16 @@ public class Client extends JFrame {
 
 		}while(!message.contains("END CHAT"));
 
+	}
+
+	private void receiveImage() throws IOException {
+		byte[] sizeAr = new byte[4];
+		input.read(sizeAr);
+		int size = ByteBuffer.wrap(sizeAr).asIntBuffer().get();
+		byte[] imageAr = new byte[size];
+		input.read(imageAr);
+		BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageAr));
+		ImageIO.write(image, "jpg",(new File ("resources/sampleImages/mole.jpg")));
 	}
 
 	private void close() {
