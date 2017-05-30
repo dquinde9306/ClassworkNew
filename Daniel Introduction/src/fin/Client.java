@@ -22,6 +22,7 @@ public class Client extends JFrame {
 	private String username;
 	private TextPrompt tp;
 	private BufferedImage image;
+	private ByteArrayOutputStream imgOut;
 
 
 	public Client(String host,String username){
@@ -94,9 +95,15 @@ public class Client extends JFrame {
 
 			try {
 				message = (String) input.readObject();
-				if(message.contains("IMAGE")){
-					image = (BufferedImage) input.readObject();
-					receiveImage();
+				if(message.contains("GET")){
+					try(Socket socket = new Socket("localhost", 25000)){
+					      BufferedImage image = ImageIO.read(socket.getInputStream());
+					      JLabel label = new JLabel(new ImageIcon(image));
+					      JFrame f = new JFrame("vnc");
+					      f.getContentPane().add(label);
+					      f.pack();
+					      f.setVisible(true);
+					    }
 				}
 				else
 				showMessage( message);
@@ -118,6 +125,7 @@ public class Client extends JFrame {
 		input.read(imageAr);
 		BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageAr));
 		ImageIO.write(image, "jpg",(new File ("resources/sampleImages/mole.jpg")));
+		showMessage("Image received");
 	}
 
 	private void close() {

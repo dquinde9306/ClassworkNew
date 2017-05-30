@@ -50,7 +50,7 @@ public class Server extends JFrame {
 		setVisible(true);
 	}
 	
-	public void startRunning(){
+	public void startRunning() throws HeadlessException, AWTException{
 		try{
 			server = new ServerSocket(6789, 100);
 			while(true){
@@ -92,7 +92,7 @@ public class Server extends JFrame {
 
 	}
 	
-	private void whileChatting()  throws IOException {
+	private void whileChatting()  throws IOException, HeadlessException, AWTException {
 		String message = " You are now connected! ";
 		sendMessage(message);
 		ableToType(true);
@@ -100,8 +100,18 @@ public class Server extends JFrame {
 			
 			try {
 				message = (String) input.readObject();
-				if(message.contains("IMAGE")){
-					sendImage();
+				if(message.contains("SEND")){
+				      showMessage("waiting!");
+
+					  BufferedImage screencapture = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
+					    try (ServerSocket serv = new ServerSocket(25000,100)) {
+					      showMessage("waiting...");
+					      try (Socket socket = serv.accept()) {
+					    	  showMessage("client connected");
+					        ImageIO.write(screencapture, "jpg", socket.getOutputStream());
+					        showMessage("sent");
+					      }
+					    }
 				}
 				else
 				showMessage( message);

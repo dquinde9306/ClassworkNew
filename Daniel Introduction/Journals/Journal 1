@@ -105,3 +105,8 @@ Friday May 26th 2017
 	to get it working to day but I think I have found a solution which I will try to apply Tuesday. I will then
 	try to get the client to send images to the server which I don't think will be as hard once I find the
 	solution.
+	
+Tuesday May 30th 2017 
+	Today, after many trials, I got my server to send images to my client. It is able to send an image of the screen
+	to the client if the key words SEND and GET are used by the client and server respectively. It is having 
+	trouble sending other images so that is what I will work on tomorrow.
