@@ -1,9 +1,12 @@
 package fin;
 
 import javax.swing.AbstractButton;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -11,8 +14,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 public class Login extends JPanel implements ActionListener {
-	protected static JButton b1;
-	protected static JButton b2;
+	protected  JButton b1;
+	protected  JButton b2;
+	protected JLabel intertext;
+	protected JTextField namebox;
 
 	public static void main(String[] args) {
 		//Schedule a job for the event-dispatching thread:
@@ -37,6 +42,7 @@ public class Login extends JPanel implements ActionListener {
 	
 		//Create and set up the content pane.
 		Login newContentPane = new Login();
+		newContentPane.setLayout(new BoxLayout(newContentPane, BoxLayout.Y_AXIS));
 		newContentPane.setOpaque(true); //content panes must be opaque
 		frame.setContentPane(newContentPane);
 	
@@ -50,6 +56,8 @@ public class Login extends JPanel implements ActionListener {
 	
 	public Login() {
 	
+		namebox = new JTextField(10);
+		
 		b1 = new JButton("Register");
 		b1.setActionCommand("disable");
 		
@@ -58,10 +66,14 @@ public class Login extends JPanel implements ActionListener {
 		
 		
 		//Listen for actions on buttons 1 and 3.
+		
 		b1.addActionListener(this);
 		b2.addActionListener(this);
 		
 		//Add Components to this container, using the default FlowLayout.
+		
+		add(namebox); 
+		
 		add(b1);
 		add(b2);
 	
