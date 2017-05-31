@@ -103,12 +103,12 @@ public class Server extends JFrame {
 				if(message.contains("SEND")){
 				      showMessage("waiting!");
 
-					  BufferedImage screencapture = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
+					  BufferedImage screencapture = ImageIO.read(new FileInputStream("resources/sampleImages/face.png"));
 					    try (ServerSocket serv = new ServerSocket(25000,100)) {
 					      showMessage("waiting...");
 					      try (Socket socket = serv.accept()) {
 					    	  showMessage("client connected");
-					        ImageIO.write(screencapture, "jpg", socket.getOutputStream());
+					        ImageIO.write(screencapture, "png", socket.getOutputStream());
 					        showMessage("sent");
 					      }
 					    }
@@ -186,7 +186,7 @@ public class Server extends JFrame {
 	}
 	
 	private void sendImage() throws IOException{
-		BufferedImage image = ImageIO.read(new FileInputStream("resources/sampleImages/mole.jpg"));
+		BufferedImage image = ImageIO.read(new File("resources/sampleImages/mole.jpg"));
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ImageIO.write(image, "jpg", byteArrayOutputStream);
         byte[]size = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
