@@ -18,6 +18,8 @@ public class Login extends JPanel implements ActionListener {
 	protected  JButton b2;
 	protected JLabel intertext;
 	protected JTextField namebox;
+	protected JLabel intertext2;
+	protected JTextField namebox2;
 
 	public static void main(String[] args) {
 		//Schedule a job for the event-dispatching thread:
@@ -57,6 +59,8 @@ public class Login extends JPanel implements ActionListener {
 	public Login() {
 	
 		namebox = new JTextField(10);
+		namebox2 = new JTextField(10);
+		//namebox.setColumns(1);
 		
 		b1 = new JButton("Register");
 		b1.setActionCommand("disable");
