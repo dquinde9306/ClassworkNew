@@ -116,5 +116,10 @@ Wednesday May 31st 2017
 
 	I was able to figure out my problem from yesterday. It was a problem with the image, I was able to send
 	a different image and there were no problems with it. To ensure that the issue is no more, I will
-	continue to test it tomorrow. 
+	continue to test it tomorrow.
 	
+Thursday June 1st 2017 
+	
+	I was able to continue add to the image sender. I can now allow for the sending of a few images depending on what 
+	client requests. For example writing SEND HAPPY will send the client a happy face image. Besides that I am
+	also trying to add a help function which would send the client a list of possible images to choose from.
