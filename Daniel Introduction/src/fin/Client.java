@@ -28,7 +28,7 @@ public class Client extends JFrame {
 	public Client(String host,String username){
 		super("Client");
 		serverIP = host;
-		 this.username = username;
+		this.username = username;
 		userText = new JTextField();
 		userText.setEditable(false);
 		userText.addActionListener(
@@ -49,6 +49,8 @@ public class Client extends JFrame {
 		add(new JScrollPane(chatWindow), BorderLayout.CENTER);
 		setSize(300,150);
 		setVisible(true);
+		String[] imNames = {"HIP","HAPPY"};
+
 	}
 
 	public void startRunning(){
@@ -91,23 +93,42 @@ public class Client extends JFrame {
 
 	private void whileChatting() throws IOException{
 		ableToType(true);
-		do{
-
+		String[] imNames = {"HIP","HAPPY"};
+		String[] imPath = {"hip.png", "face.jpg"};
+		String[] imType = {"png","jpg"};
+		boolean doesExist = false;
+		do{		
 			try {
 				message = (String) input.readObject();
-				if(message.contains("GET")){
-					try(Socket socket = new Socket("localhost", 25000)){
-					      BufferedImage image = ImageIO.read(socket.getInputStream());
-					      JLabel label = new JLabel(new ImageIcon(image));
-					      JFrame f = new JFrame("vnc");
-					      f.getContentPane().add(label);
-					      f.pack();
-					      f.setVisible(true);
-					    }
-				}
-				else
-				showMessage( message);
+				if(message.contains("SEND")){
+					for(int i = 0; i<imNames.length;i++){
+						if(message.contains("SEND") && message.contains(imNames[i]) ){
+							doesExist= true;
+							BufferedImage screencapture = ImageIO.read(new FileInputStream("resources/sampleImages/" + imPath[i]));
+							try (ServerSocket serv = new ServerSocket(25000,100)) {
+								showMessage("\n waiting...");
+								try (Socket socket = serv.accept()) {
+									showMessage("\n client connected");
+									ImageIO.write(screencapture, imType[i], socket.getOutputStream());
+									showMessage("\n sent");
+								}
+							}
+						}		
+					}
+					if(message.contains("GET")){
+						try(Socket socket = new Socket("localhost", 25001)){
+							BufferedImage image = ImageIO.read(socket.getInputStream());
+							JLabel label = new JLabel(new ImageIcon(image));
+							JFrame f = new JFrame("vnc");
+							f.getContentPane().add(label);
+							f.pack();
+							f.setVisible(true);
+						}
+					}
+					else
+						showMessage( message);
 
+				}
 			} catch (ClassNotFoundException classNotFoundException) {
 				showMessage("Unknown object ");
 			}
@@ -115,17 +136,6 @@ public class Client extends JFrame {
 
 		}while(!message.contains("END CHAT"));
 
-	}
-
-	private void receiveImage() throws IOException {
-		byte[] sizeAr = new byte[4];
-		input.read(sizeAr);
-		int size = ByteBuffer.wrap(sizeAr).asIntBuffer().get();
-		byte[] imageAr = new byte[size];
-		input.read(imageAr);
-		BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageAr));
-		ImageIO.write(image, "jpg",(new File ("resources/sampleImages/mole.jpg")));
-		showMessage("Image received");
 	}
 
 	private void close() {
@@ -138,7 +148,6 @@ public class Client extends JFrame {
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
 		}
-
 	}
 
 	private void ableToType(boolean b) {
@@ -146,14 +155,9 @@ public class Client extends JFrame {
 				new Runnable(){
 					public void run(){
 						userText.setEditable(b);
-						
 					}
-				}
-				
-				
-				
+				}				
 				);
-		
 	}
 
 	private void sendMessage(String message){

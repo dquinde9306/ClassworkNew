@@ -123,3 +123,9 @@ Thursday June 1st 2017
 	I was able to continue add to the image sender. I can now allow for the sending of a few images depending on what 
 	client requests. For example writing SEND HAPPY will send the client a happy face image. Besides that I am
 	also trying to add a help function which would send the client a list of possible images to choose from.
+	
+Friday June 2nd 2017
+	
+	Today I was able to finish adding the help function. I also began an attempt to make the message sending go both
+	ways, though this, may be a bit more difficult than I originally thought. I may also want to add a few more
+	images for the user to choose from though this is not as important.

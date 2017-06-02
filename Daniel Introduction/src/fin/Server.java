@@ -121,13 +121,30 @@ public class Server extends JFrame {
 							}
 						}		
 					}
-					if(!doesExist){
-						showMessage("\n Please select a valid image! type HELP for a list.");
+					if(message.contains("GET")){
+						try(Socket socket = new Socket("localhost", 25001)){
+							BufferedImage image = ImageIO.read(socket.getInputStream());
+							JLabel label = new JLabel(new ImageIcon(image));
+							JFrame f = new JFrame("vnc");
+							f.getContentPane().add(label);
+							f.pack();
+							f.setVisible(true);
+						}
+						if(!doesExist){
+							showMessage("\n Please select a valid image! type HELP for a list.");
 
+						}
 					}
+					if(message.contains("HELP")){
+						String pos  = "possible images are";
+						for(int i = 0; i< imNames.length;i++){
+							pos += " " + imNames[i] + " ";
+						}
+						sendMessage(pos);
+					}
+					else
+						showMessage( message);
 				}
-				else
-					showMessage( message);
 			} catch (ClassNotFoundException classNotFoundException) {
 				showMessage("What?");
 			}
@@ -148,26 +165,15 @@ public class Server extends JFrame {
 
 
 	private void sendMessage(String message) {
-
 		try {
-			if(message.equals("HELP")){
-				String list = "";
-				for(int i = 0; i<imNames.length;i++){
-					list += " " + imNames[i] + " ";
-				}
-				showMessage( "available images are :" + list);
-			}
-			else{
-				output.writeObject("\n" + username + " - " + message);
-				output.flush();
-				showMessage("\n" + username + " - " + message); 
-			}
+			output.writeObject("\n" + username + " - " + message);
+			output.flush();
+			showMessage("\n" + username + " - " + message); 
+
 		} catch (IOException ioException) {
 			chatWindow.append("\n Unable to send message");
 
 		}
-
-
 	}
 
 	private void showMessage(final String text) {
@@ -191,19 +197,6 @@ public class Server extends JFrame {
 					}
 				}
 				);
-
-
-
-	}
-
-	private void sendImage() throws IOException{
-		BufferedImage image = ImageIO.read(new File("resources/sampleImages/mole.jpg"));
-		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-		ImageIO.write(image, "jpg", byteArrayOutputStream);
-		byte[]size = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
-		output.write(size);
-		output.write(byteArrayOutputStream.toByteArray());
-		output.flush();
 	}
 
 }
