@@ -93,9 +93,9 @@ public class Client extends JFrame {
 
 	private void whileChatting() throws IOException{
 		ableToType(true);
-		String[] imNames = {"HIP","HAPPY"};
-		String[] imPath = {"hip.png", "face.jpg"};
-		String[] imType = {"png","jpg"};
+		String[] imNames = {"HIP","HAPPY","SAD","SUB"};
+		String[] imPath = {"hip.png", "face.jpg","sad.jpg","sub.png"};
+		String[] imType = {"png","jpg","jpg","png"};
 		boolean doesExist = false;
 		do{		
 			try {
@@ -105,7 +105,7 @@ public class Client extends JFrame {
 						if(message.contains("SEND") && message.contains(imNames[i]) ){
 							doesExist= true;
 							BufferedImage screencapture = ImageIO.read(new FileInputStream("resources/sampleImages/" + imPath[i]));
-							try (ServerSocket serv = new ServerSocket(25000,100)) {
+							try (ServerSocket serv = new ServerSocket(25001,100)) {
 								showMessage("\n waiting...");
 								try (Socket socket = serv.accept()) {
 									showMessage("\n client connected");
@@ -115,20 +115,27 @@ public class Client extends JFrame {
 							}
 						}		
 					}
-					if(message.contains("GET")){
-						try(Socket socket = new Socket("localhost", 25001)){
-							BufferedImage image = ImageIO.read(socket.getInputStream());
-							JLabel label = new JLabel(new ImageIcon(image));
-							JFrame f = new JFrame("vnc");
-							f.getContentPane().add(label);
-							f.pack();
-							f.setVisible(true);
-						}
-					}
-					else
-						showMessage( message);
+					if(!doesExist){
+						sendMessage(" Please select a valid image! type HELP for a list.");
 
+					}
 				}
+
+				if(message.contains("GET")){
+					try(Socket socket = new Socket("localhost", 25000)){
+						BufferedImage image = ImageIO.read(socket.getInputStream());
+						JLabel label = new JLabel(new ImageIcon(image));
+						JFrame f = new JFrame("vnc");
+						f.getContentPane().add(label);
+						f.pack();
+						f.setVisible(true);
+					}
+				}
+
+
+
+				showMessage( message);
+
 			} catch (ClassNotFoundException classNotFoundException) {
 				showMessage("Unknown object ");
 			}

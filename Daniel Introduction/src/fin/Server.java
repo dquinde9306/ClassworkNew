@@ -49,7 +49,7 @@ public class Server extends JFrame {
 		add(new JScrollPane(chatWindow));
 		setSize(300,150);
 		setVisible(true);
-		String[] imNames = {"HIP","HAPPY"};
+		String[] imNames = {"HIP","HAPPY","SAD","SUB"};
 
 	}
 
@@ -99,9 +99,9 @@ public class Server extends JFrame {
 		String message = " You are now connected! ";
 		sendMessage(message);
 		ableToType(true);
-		String[] imNames = {"HIP","HAPPY"};
-		String[] imPath = {"hip.png", "face.jpg"};
-		String[] imType = {"png","jpg"};
+		String[] imNames = {"HIP","HAPPY","SAD","SUB"};
+		String[] imPath = {"hip.png", "face.jpg","sad.jpg","sub.png"};
+		String[] imType = {"png","jpg","jpg","png"};
 		boolean doesExist = false;
 		do{
 			try {
@@ -119,33 +119,36 @@ public class Server extends JFrame {
 									showMessage("\n sent");
 								}
 							}
-						}		
+						}	
 					}
-					if(message.contains("GET")){
-						try(Socket socket = new Socket("localhost", 25001)){
-							BufferedImage image = ImageIO.read(socket.getInputStream());
-							JLabel label = new JLabel(new ImageIcon(image));
-							JFrame f = new JFrame("vnc");
-							f.getContentPane().add(label);
-							f.pack();
-							f.setVisible(true);
-						}
-						if(!doesExist){
-							showMessage("\n Please select a valid image! type HELP for a list.");
+					if(!doesExist){
+						sendMessage(" Please select a valid image! type HELP for a list.");
 
-						}
 					}
-					if(message.contains("HELP")){
-						String pos  = "possible images are";
-						for(int i = 0; i< imNames.length;i++){
-							pos += " " + imNames[i] + " ";
-						}
-						sendMessage(pos);
-					}
-					else
-						showMessage( message);
 				}
-			} catch (ClassNotFoundException classNotFoundException) {
+				
+				if(message.contains("GET")){
+					try(Socket socket = new Socket("localhost", 25001)){
+						BufferedImage image = ImageIO.read(socket.getInputStream());
+						JLabel label = new JLabel(new ImageIcon(image));
+						JFrame f = new JFrame("vnc");
+						f.getContentPane().add(label);
+						f.pack();
+						f.setVisible(true);
+					}
+
+				}
+				if(message.contains("HELP")){
+					String pos  = "possible images are";
+					for(int i = 0; i< imNames.length;i++){
+						pos += " " + imNames[i] + " ";
+					}
+					sendMessage(pos);
+				}
+				else
+					showMessage( message);
+			}
+			catch (ClassNotFoundException classNotFoundException) {
 				showMessage("What?");
 			}
 		}while(!message.contains("END CHAT"));
