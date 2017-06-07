@@ -12,7 +12,6 @@ import javax.swing.*;
 
 import introUnit.Student; 
 
-
 public class Server extends JFrame {
 
 	private JTextField userText;
@@ -50,7 +49,6 @@ public class Server extends JFrame {
 		setSize(300,150);
 		setVisible(true);
 		String[] imNames = {"HIP","HAPPY","SAD","SUB"};
-
 	}
 
 	public void startRunning() throws HeadlessException, AWTException{
@@ -72,13 +70,8 @@ public class Server extends JFrame {
 		}
 		catch(IOException ioException){
 			ioException.printStackTrace();
-
 		}
 	}
-
-
-
-
 
 	private void waitForConnection() throws IOException {
 		showMessage("Waiting for someone to connect... \n");
@@ -123,10 +116,8 @@ public class Server extends JFrame {
 					}
 					if(!doesExist){
 						sendMessage(" Please select a valid image! type HELP for a list.");
-
 					}
 				}
-				
 				if(message.contains("GET")){
 					try(Socket socket = new Socket("localhost", 25001)){
 						BufferedImage image = ImageIO.read(socket.getInputStream());
@@ -136,7 +127,6 @@ public class Server extends JFrame {
 						f.pack();
 						f.setVisible(true);
 					}
-
 				}
 				if(message.contains("HELP")){
 					String pos  = "possible images are";
@@ -166,16 +156,13 @@ public class Server extends JFrame {
 		}
 	}
 
-
 	private void sendMessage(String message) {
 		try {
 			output.writeObject("\n" + username + " - " + message);
 			output.flush();
 			showMessage("\n" + username + " - " + message); 
-
 		} catch (IOException ioException) {
 			chatWindow.append("\n Unable to send message");
-
 		}
 	}
 
@@ -186,8 +173,6 @@ public class Server extends JFrame {
 						chatWindow.append(text);
 					}
 				}
-
-
 				);
 
 	}
@@ -201,5 +186,4 @@ public class Server extends JFrame {
 				}
 				);
 	}
-
 }
