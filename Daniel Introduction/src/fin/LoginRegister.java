@@ -159,6 +159,7 @@ class Login extends JFrame implements ActionListener {
 					if(v1.equals(user.get(i))){
 						unique=false;
 						NextPage page=new NextPage();
+						page.setSize(200,100);
 						page.setVisible(true);
 						JLabel label = new JLabel("Username has been taken.");
 						page.getContentPane().add(label);
@@ -171,8 +172,9 @@ class Login extends JFrame implements ActionListener {
 					pass.add(v2);
 					saveUsers();
 					NextPage page=new NextPage();
+					page.setSize(200,100);
 					page.setVisible(true);
-					JLabel label = new JLabel("Welcome:");
+					JLabel label = new JLabel("Welcome to chat");
 					page.getContentPane().add(label);
 				}
 			}else{//contains comma
@@ -189,10 +191,12 @@ class Login extends JFrame implements ActionListener {
 			String value2=text2.getText();
 			for(int i=0; i<user.size();i++){
 				if (value1.equals(user.get(i)) && value2.equals(pass.get(i))) {
-					NextPage page=new NextPage();
-					page.setVisible(true);
-					JLabel label = new JLabel("Welcome:"+value1);
-					page.getContentPane().add(label);
+					//ProcessBuilder.Redirect(ClientTest.main);
+//					Client john;
+//					john = new Client("127.0.0.1",value1);
+//					john.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//					john.startRunning();
+					//FIX THIS
 					dispose();
 
 				}
@@ -209,13 +213,12 @@ class Login extends JFrame implements ActionListener {
 	}
 }
 
-class LoginDemo{
+class LoginRegister{
 	public static void main(String arg[]){
 
 
 		try{
 			Login frame=new Login();
-			//frame.setSize(500,500);
 			frame.pack();
 			frame.setVisible(true);
 		}
