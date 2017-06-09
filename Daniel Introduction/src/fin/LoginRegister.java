@@ -4,14 +4,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -154,34 +152,40 @@ class Login extends JFrame implements ActionListener {
 			String v1=text1.getText();
 			String v2=text2.getText();
 			boolean unique= true;
-			if(v1.indexOf(",")<0){
-				for (int i = 0; i<user.size();i++){
-					if(v1.equals(user.get(i))){
-						unique=false;
-						NextPage page=new NextPage();
-						page.setSize(200,100);
-						page.setVisible(true);
-						JLabel label = new JLabel("Username has been taken.");
-						page.getContentPane().add(label);
-						break;
-					}
-
-				}
-				if(unique){
-					user.add(v1);
-					pass.add(v2);
-					saveUsers();
-					NextPage page=new NextPage();
-					page.setSize(200,100);
-					page.setVisible(true);
-					JLabel label = new JLabel("Welcome to chat");
-					page.getContentPane().add(label);
-				}
-			}else{//contains comma
+			if(v1.equals("") || v2.equals("")){
 				NextPage page=new NextPage();
 				page.setVisible(true);
-				JLabel label = new JLabel("Cannot contain comma.");
+				JLabel label = new JLabel("Fill in all fields");
 				page.getContentPane().add(label);
+			}else{
+				if(v1.indexOf(",")<0){
+					for (int i = 0; i<user.size();i++){
+						if(v1.equals(user.get(i))){
+							unique=false;
+							NextPage page=new NextPage();
+							page.setVisible(true);
+							JLabel label = new JLabel("Username has been taken.");
+							page.getContentPane().add(label);
+							break;
+						}
+	
+					}
+					if(unique){
+						user.add(v1);
+						pass.add(v2);
+						saveUsers();
+						NextPage page=new NextPage();
+						page.setVisible(true);
+						JLabel label = new JLabel("Welcome to chat");
+						page.getContentPane().add(label);
+					}
+				}else{//contains comma
+					NextPage page=new NextPage();
+					page.setVisible(true);
+					JLabel label = new JLabel("Cannot contain comma.");
+					page.getContentPane().add(label);
+				}
+			
 			}
 		}
 
@@ -189,27 +193,47 @@ class Login extends JFrame implements ActionListener {
 
 			String value1=text1.getText();
 			String value2=text2.getText();
-			for(int i=0; i<user.size();i++){
-				if (value1.equals(user.get(i)) && value2.equals(pass.get(i))) {
-					//ProcessBuilder.Redirect(ClientTest.main);
-//					Client john;
-//					john = new Client("127.0.0.1",value1);
-//					john.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//					john.startRunning();
-					//FIX THIS
-					dispose();
-
-				}
-//								else{
-//									System.out.println("enter the valid username and password");
-//								 	JOptionPane.showMessageDialog(this,"Incorrect login or password",
-//								 			"Error",JOptionPane.ERROR_MESSAGE);
-//								 	break;
-//
-//								}
+			boolean works=false;
+			if(value1.equals("") || value2.equals("")){
+				NextPage page=new NextPage();
+				page.setVisible(true);
+				JLabel label = new JLabel("Fill in all fields");
+				page.getContentPane().add(label);
+			}else{
+				for(int i=0; i<user.size();i++){
+					if (value1.equals(user.get(i)) && value2.equals(pass.get(i))) {
+						works=true;
+						startClient(value1);
+						
+						dispose();
+						break;
+					
+	
+					}
+				}if(!works){
+						System.out.println("enter the valid username and password");
+						JOptionPane.showMessageDialog(this,"Incorrect login or password",
+						 "Error",JOptionPane.ERROR_MESSAGE);
+						
+					}
 			}
-
 		}
+	}
+	private void startClient(String value1) {
+		// TODO Auto-generated method stub
+		Client john;
+		john = new Client("127.0.0.1",value1);
+		john.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Thread go = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				john.startRunning();
+				
+			}
+		});
+		go.start();
 	}
 }
 

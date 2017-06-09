@@ -10,6 +10,6 @@ class NextPage extends JFrame
  setDefaultCloseOperation(javax.swing.
   WindowConstants.DISPOSE_ON_CLOSE);
  setTitle("Welcome");
- setSize(500, 500);
+ setSize(200, 100);
   }
  }
