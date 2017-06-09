@@ -24,7 +24,6 @@ public class Client extends JFrame {
 	private BufferedImage image;
 	private ByteArrayOutputStream imgOut;
 
-
 	public Client(String host,String username){
 		super("Client");
 		serverIP = host;
@@ -36,7 +35,6 @@ public class Client extends JFrame {
 					public void actionPerformed(ActionEvent event){
 						sendMessage(event.getActionCommand());
 						userText.setText(" ");
-
 					}					
 				}
 				);
@@ -50,7 +48,6 @@ public class Client extends JFrame {
 		setSize(300,150);
 		setVisible(true);
 		String[] imNames = {"HIP","HAPPY"};
-
 	}
 
 	public void startRunning(){
@@ -63,19 +60,13 @@ public class Client extends JFrame {
 		} catch (EOFException eofException) {
 			showMessage("\n Client ended connection");
 
-
-
 		}catch(IOException ioException){
 
 			ioException.printStackTrace();
 		}finally{
 			close();
 		}
-
-
 	}
-
-
 
 	private void connectToServer() throws IOException {
 		showMessage("Attempting to connect to server... \n");
@@ -88,7 +79,6 @@ public class Client extends JFrame {
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
 		showMessage("\n Streams are setup! \n");
-
 	}
 
 	private void whileChatting() throws IOException{
@@ -117,10 +107,8 @@ public class Client extends JFrame {
 					}
 					if(!doesExist){
 						sendMessage(" Please select a valid image! type HELP for a list.");
-
 					}
 				}
-
 				if(message.contains("GET")){
 					try(Socket socket = new Socket("localhost", 25000)){
 						BufferedImage image = ImageIO.read(socket.getInputStream());
@@ -131,11 +119,7 @@ public class Client extends JFrame {
 						f.setVisible(true);
 					}
 				}
-
-
-
 				showMessage( message);
-
 			} catch (ClassNotFoundException classNotFoundException) {
 				showMessage("Unknown object ");
 			}
@@ -185,11 +169,6 @@ public class Client extends JFrame {
 					}
 
 				});
-
-
-
 	}
-
-
 }
 
