@@ -230,7 +230,7 @@ class Login extends JFrame implements ActionListener {
 			public void run() {
 				// TODO Auto-generated method stub
 				john.startRunning();
-				
+				 
 			}
 		});
 		go.start();
